@@ -232,7 +232,7 @@ install() {
         pkgs="${pkgs} xz-utils flex bison build-essential wget curl net-tools quota genisoimage sudo libaio-dev libattr1-dev libcap-dev expect automake acl autotools-dev autoconf m4 pkgconf"
         install_deps "${pkgs}" "${SKIP_INSTALL}"
         ;;
-      centos|fedora)
+      centos|fedora|sberlinux)
         [[ -n "${TEST_GIT_URL}" ]] && pkgs="git-core"
         pkgs="${pkgs} xz flex bison make automake gcc gcc-c++ kernel-devel wget curl net-tools quota genisoimage sudo libaio-devel libattr-devel libcap-devel m4 expect acl pkgconf"
         install_deps "${pkgs}" "${SKIP_INSTALL}"
