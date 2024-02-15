@@ -281,7 +281,7 @@ install_deps() {
           sberlinux)
             # shellcheck disable=SC2086
             # dnf -e 0 -y install ${pkgs}
-            yum -y install ${pkgs}
+            dnf -y install ${pkgs}
             ;;
           *)
             warn_msg "Unsupported distro: ${dist}! Package installation skipped."
