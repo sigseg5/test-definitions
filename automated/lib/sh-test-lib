@@ -270,7 +270,7 @@ install_deps() {
             # shellcheck disable=SC2086
             DEBIAN_FRONTEND=noninteractive apt-get install -q -y ${pkgs}
             ;;
-          centos)
+          centos|rhel)
             # shellcheck disable=SC2086
             yum -e 0 -y install ${pkgs}
             ;;
@@ -305,7 +305,7 @@ remove_pkgs() {
         # shellcheck disable=SC2086
         DEBIAN_FRONTEND=noninteractive apt-get -y purge ${pkgs}
         ;;
-      centos)
+      centos|rhel)
         # shellcheck disable=SC2086
         yum -y remove ${pkgs}
         ;;
@@ -433,7 +433,7 @@ add_key() {
     dist_name
     case "${dist}" in
       debian|ubuntu) wget -O - "${url}" | apt-key add - ;;
-      centos|fedora|sberlinux) infor_msg "add_key isn't needed on ${dist}" ;;
+      centos|fedora|sberlinux|rhel) infor_msg "add_key isn't needed on ${dist}" ;;
       *) warn_msg "Unsupported distro: add_key skipped"
     esac
 }
@@ -466,7 +466,7 @@ add_repo() {
         ;;
       # It is not easy to amend url with distro version as its format may vary
       # by repo. Test definition/plan should provide a correct repo url.
-      centos|fedora|sberlinux)
+      centos|fedora|sberlinux|rhel)
         wget -O - "${url}" >> "/etc/yum.repos.d/3rd-party.repo"
         ;;
       *)
